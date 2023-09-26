@@ -46,7 +46,5 @@ export class Board {
         context.lineTo(this.width, index);
         context.stroke();
       });
-
-this.blocksMatrix.forEach(row=>row.forEach(block=>))
-    }
+  }
 }
