@@ -12,7 +12,11 @@ export class Piece {
     this.shape = generateShape();
     this.position = { x: randomRange(GAME_WIDTH), y: 0 };
     this.blocks = this.shape.squares.map(
-      (square) => new Block(this.shape.color, this.position, square)
+      (square) =>
+        new Block(this.shape.color, square, {
+          x: this.position.x + square.x,
+          y: this.position.y + square.y,
+        })
     );
   }
 

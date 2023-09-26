@@ -6,12 +6,15 @@ export class Block {
 
   constructor(
     public color: Color,
-    public piecePosition: Position,
-    public relativePosition: Position
+    public relativePosition: Position,
+    public position: Position
   ) {}
 
   update(piecePosition: Position) {
-    this.piecePosition = piecePosition;
+    this.position = {
+      x: piecePosition.x + this.relativePosition.x,
+      y: piecePosition.y + this.relativePosition.y,
+    };
   }
 
   draw(context: CanvasRenderingContext2D) {
@@ -19,12 +22,7 @@ export class Block {
     context.strokeStyle = "#000000";
     context.lineWidth = 1 / BLOCK_SIZE;
     context.beginPath();
-    context.rect(
-      this.piecePosition.x + this.relativePosition.x,
-      this.piecePosition.y + this.relativePosition.y,
-      1,
-      1
-    );
+    context.rect(this.position.x, this.position.y, 1, 1);
     context.fill();
     context.stroke();
   }
