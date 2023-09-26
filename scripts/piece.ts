@@ -1,6 +1,6 @@
 import { generateShape, isInsideBorders, randomRange } from "./utils.js";
 import { Action, Position, Shape } from "./types.js";
-import { GAME_WIDTH } from "./constants.js";
+import { BOARD_WIDTH } from "./constants.js";
 import { Block } from "./block.js";
 
 export class Piece {
@@ -8,9 +8,9 @@ export class Piece {
   blocks: Block[];
   position: Position;
 
-  constructor() {
-    this.shape = generateShape();
-    this.position = { x: randomRange(GAME_WIDTH), y: 0 };
+  constructor(shape?: Shape) {
+    this.shape = shape ?? generateShape();
+    this.position = { x: randomRange(BOARD_WIDTH), y: 0 };
     this.blocks = this.shape.squares.map(
       (square) =>
         new Block(this.shape.color, square, {

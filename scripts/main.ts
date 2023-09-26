@@ -1,5 +1,5 @@
 import { Game } from "./game.js";
-import { BLOCK_SIZE, BOARD_MARGIN, UPDATE_RATE } from "./constants.js";
+import { UPDATE_RATE } from "./constants.js";
 
 const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 const context = canvas.getContext("2d")!;
@@ -38,11 +38,7 @@ const animate = (time?: number) => {
     game.update();
   }
 
-  context.save();
-  context.translate(BOARD_MARGIN, BOARD_MARGIN);
-  context.scale(BLOCK_SIZE, BLOCK_SIZE);
-  game.draw(context);
-  context.restore();
+  game.draw(context, canvas.width);
 
   requestAnimationFrame(animate);
 };
