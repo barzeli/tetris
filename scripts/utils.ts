@@ -13,6 +13,6 @@ export const isInsideBorders = (position: Position) =>
   position.y < GAME_HEIGHT;
 
 export const isEndOfFall = (piece: Piece) =>
-  piece.shape.blocks.some(
-    (block) => piece.position.y + block.y >= GAME_HEIGHT - 1
+  piece.shape.squares.some(
+    (square) => piece.position.y + square.y >= GAME_HEIGHT - 1
   );

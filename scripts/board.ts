@@ -11,10 +11,10 @@ export class Board {
   }
 
   addPiece(piece: Piece) {
-    piece.shape.blocks.forEach(
-      (block) =>
-        this.blocksMatrix[piece.position.x + block.x][
-          piece.position.y + block.y
+    piece.shape.squares.forEach(
+      (square) =>
+        this.blocksMatrix[piece.position.x + square.x][
+          piece.position.y + square.y
         ]
     );
   }
@@ -46,5 +46,7 @@ export class Board {
         context.lineTo(this.width, index);
         context.stroke();
       });
-  }
+
+this.blocksMatrix.forEach(row=>row.forEach(block=>))
+    }
 }

@@ -28,7 +28,7 @@ export interface Position {
 export interface Shape {
   type: ShapeType;
   color: Color;
-  blocks: Position[];
+  squares: Position[];
   rotationCenter: Position;
 }
 
@@ -36,7 +36,7 @@ export const SHAPES: Shape[] = [
   {
     type: ShapeType.O,
     color: Color.YELLOW,
-    blocks: [
+    squares: [
       { x: 0, y: 0 },
       { x: 1, y: 0 },
       { x: 0, y: 1 },
@@ -50,7 +50,7 @@ export const SHAPES: Shape[] = [
   {
     type: ShapeType.L,
     color: Color.ORANGE,
-    blocks: [
+    squares: [
       { x: 0, y: 0 },
       { x: 0, y: 1 },
       { x: 0, y: 2 },
@@ -64,7 +64,7 @@ export const SHAPES: Shape[] = [
   {
     type: ShapeType.J,
     color: Color.BLUE,
-    blocks: [
+    squares: [
       { x: 1, y: 0 },
       { x: 1, y: 1 },
       { x: 1, y: 2 },
@@ -78,7 +78,7 @@ export const SHAPES: Shape[] = [
   {
     type: ShapeType.I,
     color: Color.LIGHT_BLUE,
-    blocks: [
+    squares: [
       { x: 0, y: 0 },
       { x: 0, y: 1 },
       { x: 0, y: 2 },
@@ -92,7 +92,7 @@ export const SHAPES: Shape[] = [
   {
     type: ShapeType.T,
     color: Color.PURPLE,
-    blocks: [
+    squares: [
       { x: 0, y: 0 },
       { x: 1, y: 0 },
       { x: 2, y: 0 },
@@ -106,7 +106,7 @@ export const SHAPES: Shape[] = [
   {
     type: ShapeType.Z,
     color: Color.RED,
-    blocks: [
+    squares: [
       { x: 0, y: 1 },
       { x: 1, y: 1 },
       { x: 1, y: 0 },
@@ -120,7 +120,7 @@ export const SHAPES: Shape[] = [
   {
     type: ShapeType.S,
     color: Color.GREEN,
-    blocks: [
+    squares: [
       { x: 0, y: 0 },
       { x: 1, y: 0 },
       { x: 1, y: 1 },

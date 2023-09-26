@@ -1,14 +1,19 @@
 import { generateShape, isInsideBorders, randomRange } from "./utils.js";
 import { Action, Position, Shape } from "./types.js";
-import { BLOCK_SIZE, GAME_WIDTH } from "./constants.js";
+import { GAME_WIDTH } from "./constants.js";
+import { Block } from "./block.js";
 
 export class Piece {
   shape: Shape;
+  blocks: Block[];
   position: Position;
 
   constructor() {
     this.shape = generateShape();
     this.position = { x: randomRange(GAME_WIDTH), y: 0 };
+    this.blocks = this.shape.squares.map(
+      (square) => new Block(this.shape.color, this.position, square)
+    );
   }
 
   update(direction: Action = "moveDown") {
@@ -28,21 +33,12 @@ export class Piece {
       default:
         break;
     }
-    !isInsideBorders(this.position) && (this.position = oldPosition);
+    isInsideBorders(this.position)
+      ? this.blocks.forEach((block) => block.update(this.position))
+      : (this.position = oldPosition);
   }
 
   draw(context: CanvasRenderingContext2D) {
-    context.fillStyle = this.shape.color;
-    context.strokeStyle = "#000000";
-    context.lineWidth = 1 / BLOCK_SIZE;
-    context.save();
-    context.translate(this.position.x, this.position.y);
-    this.shape.blocks.forEach((block) => {
-      context.beginPath();
-      context.rect(block.x, block.y, 1, 1);
-      context.fill();
-      context.stroke();
-    });
-    context.restore();
+    this.blocks.forEach((block) => block.draw(context));
   }
 }
