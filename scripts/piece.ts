@@ -37,7 +37,7 @@ export class Piece {
       default:
         break;
     }
-    isInsideBorders(this.position)
+    isInsideBorders(this.position, this.blocks)
       ? this.blocks.forEach((block) => block.update(this.position))
       : (this.position = oldPosition);
   }

@@ -1,21 +1,18 @@
 import { BLOCK_SIZE } from "./constants.js";
 import { Piece } from "./piece.js";
-import { Position } from "./types.js";
+import { Block } from "./block.js";
 
 export class Board {
-  blocksMatrix: (Position | null)[][];
+  blocksMatrix: (Block | null)[][];
   constructor(private width: number, private height: number) {
-    this.blocksMatrix = [...new Array(height)].fill(
-      new Array(width).fill(null)
+    this.blocksMatrix = [...new Array(height)].map((_) =>
+      new Array(width).map((_) => null)
     );
   }
 
   addPiece(piece: Piece) {
-    piece.shape.squares.forEach(
-      (square) =>
-        this.blocksMatrix[piece.position.x + square.x][
-          piece.position.y + square.y
-        ]
+    piece.blocks.forEach(
+      (block) => (this.blocksMatrix[block.position.y][block.position.x] = block)
     );
   }
 
@@ -46,5 +43,9 @@ export class Board {
         context.lineTo(this.width, index);
         context.stroke();
       });
+
+    this.blocksMatrix.forEach((row) =>
+      row.forEach((block) => block?.draw(context))
+    );
   }
 }
